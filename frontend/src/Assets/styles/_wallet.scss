@@ -1,39 +1,11 @@
-.dashboard{
+.wallet{
 
-    .react-tabs__tab-list{
-        margin: 0;
+    h1{
+        margin: 20px;
+        font-size: 36px;
     }
-
-    ul{
-        font-size: 22px;
-        .react-tabs__tab--selected{
-            color: $teal;
-        }
-        li{
-            width: 40%;
-        }
-    }
-
-    button{
-        position: relative;
-        margin-top: 80px;
-    }
-
-    .panel{
-        margin-top: 100px;
-
-        .mykeys-par, a{
-            padding-left: 20px;
-            font-size: 15px;
-        }
-
-        img{
-            height: 250px;
-        }
-    }
-
-    a{
-        color: $darkblue;
+    p{
+        margin-left: 20px;
     }
 
     .key-row{
@@ -74,8 +46,17 @@
             position: relative;
             height: 15px;
             right: 5px;
+            transform: rotate(90deg);
+        }
+
+
+
+        .collapsed-content{
+            // display: none;
         }
 
     }
-
+    button{
+        margin-top: 80px;
+    }
 }

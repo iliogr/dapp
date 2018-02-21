@@ -6,6 +6,7 @@ import Create from './Create';
 import Privacy from './Privacy';
 import Dashboard from './Dashboard';
 import AddKey from './AddKey';
+import Wallet from './Wallet';
 
 import {
     BrowserRouter as Router,
@@ -33,6 +34,8 @@ class App extends Component {
                             <Route exact path="/privacy" component={Privacy}/>
                             <Route exact path="/dashboard" component={Dashboard}/>
                             <Route path="/add-key" component={AddKey}/>
+                            <Route path="/wallet/:name" component={Wallet}/>
+
                         </div>
 
                     </div>

@@ -1,6 +1,7 @@
-body {
+body, html {
   margin: 0;
   padding: 0;
+  width: 100vw;
   font-family: 'Roboto';
   background: $bg;
 }
@@ -11,6 +12,8 @@ a{
 }
 
 .main-container{
+    position: relative;
+    box-sizing: border-box;
     width: 100%;
     height: 100vh;
     display: grid;

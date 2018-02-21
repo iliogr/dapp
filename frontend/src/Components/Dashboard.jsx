@@ -77,7 +77,7 @@ class KeysPanel extends Component {
     render() {
         return (
             <div>
-                <div className="fl-row">
+                <Link to="/wallet/toshi" className="fl-row">
                     <div className="fl-100">
                         <div className="fl-row key-row">
                             <div className="fl-90">
@@ -89,8 +89,8 @@ class KeysPanel extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="fl-row">
+                </Link>
+                <Link to="/wallet/toshi" className="fl-row">
                     <div className="fl-100">
                         <div className="fl-row key-row">
                             <div className="fl-90">
@@ -102,8 +102,8 @@ class KeysPanel extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="fl-row">
+                </Link>
+                <Link to="/wallet/toshi" className="fl-row">
                     <div className="fl-100">
                         <div className="fl-row key-row">
                             <div className="fl-90">
@@ -115,7 +115,7 @@ class KeysPanel extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </Link>
                 <center><button onClick={() => { this.props.history.push('/add-key') }} className="create-account">ADD KEY</button></center>
             </div>
         )
