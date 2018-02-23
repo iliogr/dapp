@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import './Assets/styles/index.scss';
 
 import registerServiceWorker from './registerServiceWorker';
@@ -9,7 +9,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducer from './Reducers';
-import App from './Components/App';
+// import App from './Components/App';
 import GlobalContainer from './Containers/GlobalContainer';
 
 
@@ -23,8 +23,11 @@ const store = createStore(
 );
 
 ReactDOM.render(
+
     <Provider store={store}>
-        <BrowserRouter><GlobalContainer /></BrowserRouter>
+        <BrowserRouter>
+            <Route path="/" component={GlobalContainer} />
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 );

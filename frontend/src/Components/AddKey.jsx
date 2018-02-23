@@ -1,30 +1,14 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 class AddKey extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="addkey">
-                <div className="fl-row fl-space-between">
-                    <div className="fl-32 step-meter checked">
-                    </div>
-                    <div className="fl-32 step-meter">
-                    </div>
-                    <div className="fl-32 step-meter">
-                    </div>
-                </div>
-
-
                 <Route exact path="/add-key/step1" component={Step1}/>
                 <Route exact path="/add-key/step2" component={Step2}/>
                 <Route exact path="/add-key/step3" component={Step3}/>
                 <Route exact path="/add-key/done" component={Step4}/>
-
             </div>
         )
     }
@@ -36,6 +20,14 @@ class Step1 extends Component {
     render() {
         return (
             <div className="step1">
+                <div className="fl-row fl-space-between">
+                    <div className="fl-32 step-meter checked">
+                    </div>
+                    <div className="fl-32 step-meter">
+                    </div>
+                    <div className="fl-32 step-meter">
+                    </div>
+                </div>
                 <h1>Add Seed Words</h1>
                 <p>KeySplit helps you to store your seed words safely by creating five keys you share with your trusty guardians.  Let’s start!</p>
 
@@ -46,7 +38,7 @@ class Step1 extends Component {
                         <textarea placeholder="Your 12-word seed words" />
                     </div>
                 </div>
-                <center><button onClick={() => { this.props.history.push('/step2') }}>CONTINUE</button></center>
+                <center><button onClick={() => { this.props.history.push('/add-key/step2') }}>CONTINUE</button></center>
             </div>
         )
     }
@@ -56,6 +48,14 @@ class Step2 extends Component {
     render() {
         return (
             <div className="step2">
+                <div className="fl-row fl-space-between">
+                    <div className="fl-32 step-meter checked">
+                    </div>
+                    <div className="fl-32 step-meter checked">
+                    </div>
+                    <div className="fl-32 step-meter">
+                    </div>
+                </div>
                 <h1>Add Guardians</h1>
                 <p>Appoint your five guardians who will protect and help you restore your seed words. Each guardian needs to be from different community.</p>
 
@@ -107,7 +107,7 @@ class Step2 extends Component {
                 </div>
 
 
-                <center><button onClick={() => { this.props.history.push('/step3') }}>CONTINUE</button></center>
+                <center><button onClick={() => { this.props.history.push('/add-key/step3') }}>CONTINUE</button></center>
 
             </div>
         )
@@ -118,6 +118,14 @@ class Step3 extends Component {
     render() {
         return (
             <div className="step3">
+                <div className="fl-row fl-space-between">
+                    <div className="fl-32 step-meter checked">
+                    </div>
+                    <div className="fl-32 step-meter checked">
+                    </div>
+                    <div className="fl-32 step-meter checked">
+                    </div>
+                </div>
                 <h1>Share Keys</h1>
                 <p>Send the unique keys to your guardians. KeySplit recommends contacting the guardians personally after to make sure they got it.</p>
 
@@ -131,7 +139,7 @@ class Step3 extends Component {
                                     <p>keysplit.dapp/2slNhs9a</p>
                                 </div>
                                 <div className="fl-20">
-                                    <img src={require("../Assets/images/dashboard/share-arrow.svg")} />
+                                    <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
                                 </div>
                             </div>
                         </div>
@@ -148,7 +156,7 @@ class Step3 extends Component {
                                     <p>keysplit.dapp/2slNhs9a</p>
                                 </div>
                                 <div className="fl-20">
-                                    <img src={require("../Assets/images/dashboard/share-arrow.svg")} />
+                                    <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
                                 </div>
                             </div>
                         </div>
@@ -165,7 +173,7 @@ class Step3 extends Component {
                                     <p>keysplit.dapp/2slNhs9a</p>
                                 </div>
                                 <div className="fl-20">
-                                    <img src={require("../Assets/images/dashboard/share-arrow.svg")} />
+                                    <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
                                 </div>
                             </div>
                         </div>
@@ -182,7 +190,7 @@ class Step3 extends Component {
                                     <p>keysplit.dapp/2slNhs9a</p>
                                 </div>
                                 <div className="fl-20">
-                                    <img src={require("../Assets/images/dashboard/share-arrow.svg")} />
+                                    <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
                                 </div>
                             </div>
                         </div>
@@ -199,14 +207,14 @@ class Step3 extends Component {
                                     <p>keysplit.dapp/2slNhs9a</p>
                                 </div>
                                 <div className="fl-20">
-                                    <img src={require("../Assets/images/dashboard/share-arrow.svg")} />
+                                    <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <center><button onClick={() => { this.props.history.push('/step4') }}>DONE</button></center>
+                <center><button onClick={() => { this.props.history.push('/add-key/done') }}>DONE</button></center>
             </div>
         )
     }
@@ -219,23 +227,23 @@ class Step4 extends Component {
                 <h1>Done!</h1>
                 <div className="fl-row">
                     <div className="fl-20">
-                        <img src={require("../Assets/images/dashboard/happy_logo.png")} />
+                        <img alt="" src={require("../Assets/images/dashboard/happy_logo.png")} />
                     </div>
                     <div className="fl-20">
-                        <img className="low-opacity" src={require("../Assets/images/dashboard/happy_logo.png")} />
+                        <img alt="" className="low-opacity" src={require("../Assets/images/dashboard/happy_logo.png")} />
                     </div>
                     <div className="fl-20">
-                        <img className="low-opacity" src={require("../Assets/images/dashboard/happy_logo.png")} />
+                        <img alt="" className="low-opacity" src={require("../Assets/images/dashboard/happy_logo.png")} />
                     </div>
                     <div className="fl-20">
-                        <img className="low-opacity" src={require("../Assets/images/dashboard/happy_logo.png")} />
+                        <img alt="" className="low-opacity" src={require("../Assets/images/dashboard/happy_logo.png")} />
                     </div>
                     <div className="fl-20">
-                        <img className="low-opacity" src={require("../Assets/images/dashboard/happy_logo.png")} />
+                        <img alt="" className="low-opacity" src={require("../Assets/images/dashboard/happy_logo.png")} />
                     </div>
                 </div>
                 <p>You will get notified once your guardians check in. We recommend you connecting with your guardians regularly to make sure that they have your keys safe.</p>
-                <center><button onClick={() => { this.props.history.push('/step') }}>VIEW MY KEY</button></center>
+                <center><button onClick={() => { this.props.history.push('/dashboard') }}>VIEW MY KEY</button></center>
             </div>
         )
     }

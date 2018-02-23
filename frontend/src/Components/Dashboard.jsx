@@ -14,7 +14,7 @@ class Dashboard extends Component {
     componentDidMount = () => {
 
         this.setState({
-            keys: true
+            keys: false
         });
     }
 
@@ -22,10 +22,10 @@ class Dashboard extends Component {
 
         let panel = null;
         if(!this.state.keys) {
-            panel = <NoKeysPanel />
+            panel = <NoKeysPanel history={this.props.history} />
         }
         else{
-            panel = <KeysPanel />
+            panel = <KeysPanel history={this.props.history} />
         }
 
 
@@ -55,25 +55,31 @@ export default Dashboard;
 
 
 class NoKeysPanel extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
             <div>
                 <div className="fl-row panel">
                     <div className="fl-30">
-                        <img src={require("../Assets/images/dashboard/sad_logo.png")} />
+                        <img alt="" src={require("../Assets/images/dashboard/sad_logo.png")} />
                     </div>
                     <div className="fl-70">
                         <p className="mykeys-par">You have no seed words securely stored with KeySplit.</p>
                         <Link to="">I want to save my seed words</Link>
                     </div>
                 </div>
-                <center><button onClick={() => { this.props.history.push('/add-key') }} className="create-account">ADD KEY</button></center>
+                <center><button onClick={() => { this.props.history.push('/add-key/step1') }} className="create-account">ADD KEY</button></center>
             </div>
         )
     }
 }
 
 class KeysPanel extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
             <div>
@@ -85,7 +91,7 @@ class KeysPanel extends Component {
                                 <span className="status-ball active"></span>
                             </div>
                             <div className="fl-10">
-                                <img src={require("../Assets/images/dashboard/next.svg")} />
+                                <img alt="" src={require("../Assets/images/dashboard/next.svg")} />
                             </div>
                         </div>
                     </div>
@@ -98,7 +104,7 @@ class KeysPanel extends Component {
                                 <span className="status-ball warning"></span>
                             </div>
                             <div className="fl-10">
-                                <img src={require("../Assets/images/dashboard/next.svg")} />
+                                <img alt="" src={require("../Assets/images/dashboard/next.svg")} />
                             </div>
                         </div>
                     </div>
@@ -111,7 +117,7 @@ class KeysPanel extends Component {
                                 <span className="status-ball inactive"></span>
                             </div>
                             <div className="fl-10">
-                                <img src={require("../Assets/images/dashboard/next.svg")} />
+                                <img alt="" src={require("../Assets/images/dashboard/next.svg")} />
                             </div>
                         </div>
                     </div>

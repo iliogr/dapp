@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom';
 
 class Create extends Component {
 
@@ -14,7 +14,7 @@ class Create extends Component {
                 <h1>Create Account</h1>
                 <p>Your Toshi wallet address<br/>will be your username.</p>
                 <div className="fl-row">
-                    <div className="fl-offset-15 fl-70">
+                    <div className="fl-offset-10 fl-80">
                         <h4>Create Password</h4>
                         <input placeholder="Password (min 12 characters)" type="password" name="password" />
                     </div>

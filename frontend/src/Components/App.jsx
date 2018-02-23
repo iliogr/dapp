@@ -9,18 +9,11 @@ import AddKey from './AddKey';
 import Wallet from './Wallet';
 
 import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom'
+    Route
+} from 'react-router-dom';
 
 
 class App extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="main-container">
@@ -35,9 +28,7 @@ class App extends Component {
                             <Route exact path="/dashboard" component={Dashboard}/>
                             <Route path="/add-key" component={AddKey}/>
                             <Route path="/wallet/:name" component={Wallet}/>
-
                         </div>
-
                     </div>
                 </div>
             </div>
