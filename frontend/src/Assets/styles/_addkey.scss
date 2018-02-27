@@ -69,6 +69,10 @@
                 margin-top: 10px;
                 color: $textgrey;
                 font-weight: bold;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 120px;
             }
 
             img{

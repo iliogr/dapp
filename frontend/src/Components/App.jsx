@@ -8,6 +8,8 @@ import Dashboard from './Dashboard';
 import AddKey from './AddKey';
 import Wallet from './Wallet';
 
+import StepsContainer from '../Containers/StepsContainer';
+
 import {
     Route
 } from 'react-router-dom';
@@ -26,7 +28,7 @@ class App extends Component {
                             <Route exact path="/create" component={Create}/>
                             <Route exact path="/privacy" component={Privacy}/>
                             <Route exact path="/dashboard" component={Dashboard}/>
-                            <Route path="/add-key" component={AddKey}/>
+                            <Route path="/add-key" component={StepsContainer}/>
                             <Route path="/wallet/:name" component={Wallet}/>
                         </div>
                     </div>

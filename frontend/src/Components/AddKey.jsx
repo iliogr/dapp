@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
 class AddKey extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div className="addkey">
-                <Route exact path="/add-key/step1" component={Step1}/>
-                <Route exact path="/add-key/step2" component={Step2}/>
-                <Route exact path="/add-key/step3" component={Step3}/>
-                <Route exact path="/add-key/done" component={Step4}/>
+                <Route exact path="/add-key/step1" render={ () => <Step1 { ...this.props } /> } />
+                <Route exact path="/add-key/step2" render={ () => <Step2 { ...this.props } /> } />
+                <Route exact path="/add-key/step3" render={ () => <Step3 { ...this.props } /> } />
+                <Route exact path="/add-key/done" render={ () => <Step4 { ...this.props } /> } />
             </div>
         )
     }
@@ -17,6 +22,19 @@ class AddKey extends Component {
 export default AddKey;
 
 class Step1 extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    handleInputChange = (e) => {
+        this.setState({ nickname: e.target.value });
+    }
+    handleAreaChange = (e) => {
+        this.setState({ seed: e.target.value });
+    }
+
     render() {
         return (
             <div className="step1">
@@ -34,17 +52,49 @@ class Step1 extends Component {
                 <div className="fl-row">
                     <div className="fl-offset-5 fl-90">
                         <h4>Nickname</h4>
-                        <input placeholder="Nickname for the seed words" type="text" name="text" />
-                        <textarea placeholder="Your 12-word seed words" />
+                        <input onChange={ this.handleInputChange } placeholder="Nickname for the seed words" type="text" name="text" />
+                        <textarea onChange={ this.handleAreaChange } placeholder="Your 12-word seed words" />
                     </div>
                 </div>
-                <center><button onClick={() => { this.props.history.push('/add-key/step2') }}>CONTINUE</button></center>
+                <center>
+                    <button
+                    onClick={
+                        this.props.changeStep.bind(this, {nickname: this.state.nickname, seed: this.state.seed}, 1)
+                    }>
+                    CONTINUE
+                    </button>
+                </center>
             </div>
         )
     }
 }
 
 class Step2 extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            guardians: [
+                {name: "", phone: "", community: ""},
+                {name: "", phone: "", community: ""},
+                {name: "", phone: "", community: ""},
+                {name: "", phone: "", community: ""},
+                {name: "", phone: "", community: ""}
+            ]
+
+        };
+    }
+
+    handleInputChange = (id, key, e) => {
+        let newArr = [...this.state.guardians];
+        newArr[id-1][key] = e.target.value;
+
+        this.setState({
+            guardians: newArr
+        })
+    }
+
+
     render() {
         return (
             <div className="step2">
@@ -58,56 +108,52 @@ class Step2 extends Component {
                 </div>
                 <h1>Add Guardians</h1>
                 <p>Appoint your five guardians who will protect and help you restore your seed words. Each guardian needs to be from different community.</p>
-
                 <div className="fl-row">
                     <div className="fl-offset-5 fl-90">
                         <h4>Guardian 1</h4>
-                        <input placeholder="Guardian 1's name" type="text" name="text" />
-                        <input placeholder="Guardian 1's phone number" type="text" name="text" />
-                        <input placeholder="Community" type="text" name="text" />
+                        <input onChange={ this.handleInputChange.bind(this, 1, "name") } placeholder="Guardian 1's name" type="text" name="g1_name" />
+                        <input onChange={ this.handleInputChange.bind(this, 1, "phone") } placeholder="Guardian 1's phone number" type="text" name="g1_phone" />
+                        <input onChange={ this.handleInputChange .bind(this, 1, "community")} placeholder="Community" type="text" name="g1_community" />
                     </div>
                 </div>
-
+                <div className="fl-row">
+                    <div className="fl-offset-5 fl-90">
+                        <h4>Guardian 2</h4>
+                        <input onChange={ this.handleInputChange.bind(this, 2, "name") } placeholder="Guardian 2's name" type="text" name="g2_name" />
+                        <input onChange={ this.handleInputChange.bind(this, 2, "phone") } placeholder="Guardian 2's phone number" type="text" name="g2_phone" />
+                        <input onChange={ this.handleInputChange.bind(this, 2, "community") } placeholder="Community" type="text" name="g2_community" />
+                    </div>
+                </div>
                 <div className="fl-row">
                     <div className="fl-offset-5 fl-90">
                         <h4>Guardian 3</h4>
-                        <input placeholder="Guardian 2's name" type="text" name="text" />
-                        <input placeholder="Guardian 2's phone number" type="text" name="text" />
-                        <input placeholder="Community" type="text" name="text" />
+                        <input onChange={ this.handleInputChange.bind(this, 3, "name") } placeholder="Guardian 3's name" type="text" name="g3_name" />
+                        <input onChange={ this.handleInputChange.bind(this, 3, "phone") } placeholder="Guardian 3's phone number" type="text" name="g3_phone" />
+                        <input onChange={ this.handleInputChange.bind(this, 3, "community") } placeholder="Community" type="text" name="g3_community" />
                     </div>
                 </div>
-
-                <div className="fl-row">
-                    <div className="fl-offset-5 fl-90">
-                        <h4>Guardian 3</h4>
-                        <input placeholder="Guardian 3's name" type="text" name="text" />
-                        <input placeholder="Guardian 3's phone number" type="text" name="text" />
-                        <input placeholder="Community" type="text" name="text" />
-                    </div>
-                </div>
-
-
                 <div className="fl-row">
                     <div className="fl-offset-5 fl-90">
                         <h4>Guardian 4</h4>
-                        <input placeholder="Guardian 4's name" type="text" name="text" />
-                        <input placeholder="Guardian 4's phone number" type="text" name="text" />
-                        <input placeholder="Community" type="text" name="text" />
+                        <input onChange={ this.handleInputChange.bind(this, 4, "name") } placeholder="Guardian 4's name" type="text" name="g4_name" />
+                        <input onChange={ this.handleInputChange.bind(this, 4, "phone") } placeholder="Guardian 4's phone number" type="text" name="g4_phone" />
+                        <input onChange={ this.handleInputChange.bind(this, 4, "community") } placeholder="Community" type="text" name="g4_community" />
                     </div>
                 </div>
-
-
                 <div className="fl-row">
                     <div className="fl-offset-5 fl-90">
                         <h4>Guardian 5</h4>
-                        <input placeholder="Guardian 5's name" type="text" name="text" />
-                        <input placeholder="Guardian 5's phone number" type="text" name="text" />
-                        <input placeholder="Community" type="text" name="text" />
+                        <input onChange={ this.handleInputChange.bind(this, 5, "name") } placeholder="Guardian 5's name" type="text" name="g5_name" />
+                        <input onChange={ this.handleInputChange.bind(this, 5, "phone") } placeholder="Guardian 5's phone number" type="text" name="g5_phone" />
+                        <input onChange={ this.handleInputChange.bind(this, 5, "community") } placeholder="Community" type="text" name="g5_community" />
                     </div>
                 </div>
-
-
-                <center><button onClick={() => { this.props.history.push('/add-key/step3') }}>CONTINUE</button></center>
+                <center>
+                    <button
+                    onClick={
+                        this.props.changeStep.bind(this, this.state, 2)
+                    }>
+                    CONTINUE</button></center>
 
             </div>
         )
@@ -115,6 +161,13 @@ class Step2 extends Component {
 }
 
 class Step3 extends Component {
+
+    constructor(props) {
+        super(props);
+        console.log(props);
+    }
+
+
     render() {
         return (
             <div className="step3">
@@ -129,90 +182,24 @@ class Step3 extends Component {
                 <h1>Share Keys</h1>
                 <p>Send the unique keys to your guardians. KeySplit recommends contacting the guardians personally after to make sure they got it.</p>
 
-                <div className="fl-row">
-                    <div className="fl-offset-5 fl-90">
-                        <div className="share-tile">
-                            <div className="fl-row">
-                                <div className="fl-80">
-                                    <h3>Russell</h3>
-                                    <h4>Family</h4>
-                                    <p>keysplit.dapp/2slNhs9a</p>
-                                </div>
-                                <div className="fl-20">
-                                    <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="fl-row">
-                    <div className="fl-offset-5 fl-90">
-                        <div className="share-tile">
-                            <div className="fl-row">
-                                <div className="fl-80">
-                                    <h3>Russell</h3>
-                                    <h4>Family</h4>
-                                    <p>keysplit.dapp/2slNhs9a</p>
-                                </div>
-                                <div className="fl-20">
-                                    <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
+                { this.props.data.guardians.map( (guardian, index) =>
+                    <div className="fl-row" key={index}>
+                        <div className="fl-offset-5 fl-90">
+                            <div className="share-tile">
+                                <div className="fl-row">
+                                    <div className="fl-80">
+                                        <h3>{guardian.name}</h3>
+                                        <h4>{guardian.community}</h4>
+                                        <p>{guardian.url}</p>
+                                    </div>
+                                    <div className="fl-20">
+                                        <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div className="fl-row">
-                    <div className="fl-offset-5 fl-90">
-                        <div className="share-tile">
-                            <div className="fl-row">
-                                <div className="fl-80">
-                                    <h3>Russell</h3>
-                                    <h4>Family</h4>
-                                    <p>keysplit.dapp/2slNhs9a</p>
-                                </div>
-                                <div className="fl-20">
-                                    <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="fl-row">
-                    <div className="fl-offset-5 fl-90">
-                        <div className="share-tile">
-                            <div className="fl-row">
-                                <div className="fl-80">
-                                    <h3>Russell</h3>
-                                    <h4>Family</h4>
-                                    <p>keysplit.dapp/2slNhs9a</p>
-                                </div>
-                                <div className="fl-20">
-                                    <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="fl-row">
-                    <div className="fl-offset-5 fl-90">
-                        <div className="share-tile">
-                            <div className="fl-row">
-                                <div className="fl-80">
-                                    <h3>Russell</h3>
-                                    <h4>Family</h4>
-                                    <p>keysplit.dapp/2slNhs9a</p>
-                                </div>
-                                <div className="fl-20">
-                                    <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                )}
 
                 <center><button onClick={() => { this.props.history.push('/add-key/done') }}>DONE</button></center>
             </div>

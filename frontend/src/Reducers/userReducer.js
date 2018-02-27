@@ -4,7 +4,7 @@ const userReducer = (state = null, action) => {
     let newState;
     switch (action.type) {
         case 'FETCH_USER_SUCCESS':
-        newState = action.user;
+            newState = action.user;
             return newState;
         default:
             return state
