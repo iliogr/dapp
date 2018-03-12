@@ -48,7 +48,6 @@ class KeySplit {
   }
   mnemonicToSSS(mnemonic, shareCount, threshold, password) {
     password = password || passwordStore[this];
-    password = "1234567891111"
     var key = bip39.mnemonicToEntropy(mnemonic);
     var salt = crypto.randomBytes(8);
     return new Promise((resolve, reject) => {

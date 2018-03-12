@@ -7,28 +7,40 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            keys: false
+            keys: false,
+            keyInfo: null,
+            keyShards: []
         }
     }
 
     componentDidMount = () => {
+        if(localStorage.pkey){
+            this.setState({
+                keys: true,
+                keyInfo: JSON.parse(localStorage.pkey)
+            });
+        }
+        else{
+            console.log("No keys detected")
+        }
 
-        this.setState({
-            keys: false
-        });
+
+        if(localStorage.getItem(`${localStorage.account}:heldShards`)){
+            this.setState({
+                keyShards: JSON.parse(localStorage.getItem(`${localStorage.account}:heldShards`))
+            },() => { console.log(this.state.keyShards); })
+        }
+
     }
 
     render() {
-
         let panel = null;
         if(!this.state.keys) {
             panel = <NoKeysPanel history={this.props.history} />
         }
         else{
-            panel = <KeysPanel history={this.props.history} />
+            panel = <KeysPanel keys={this.state.keyInfo} history={this.props.history} />
         }
-
-
         return (
             <div className="dashboard">
                 <Tabs>
@@ -42,7 +54,17 @@ class Dashboard extends Component {
                     </TabPanel>
 
                     <TabPanel>
-                        <h2>Any content 2</h2>
+                        { this.state.keyShards.map( (shard, index) =>
+                            <div key={index} className="fl-row">
+                                <div className="fl-100">
+                                    <div className="fl-row key-row shard-row">
+                                        <div className="fl-90">
+                                            <span>{shard}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </TabPanel>
                 </Tabs>
 
@@ -83,11 +105,11 @@ class KeysPanel extends Component {
     render() {
         return (
             <div>
-                <Link to="/wallet/toshi" className="fl-row">
+                <Link to={`/wallet/${this.props.keys.nickname}`} className="fl-row">
                     <div className="fl-100">
                         <div className="fl-row key-row">
                             <div className="fl-90">
-                                <span>Juwon's Toshi</span>
+                                <span>{this.props.keys.nickname}</span>
                                 <span className="status-ball active"></span>
                             </div>
                             <div className="fl-10">
@@ -96,34 +118,9 @@ class KeysPanel extends Component {
                         </div>
                     </div>
                 </Link>
-                <Link to="/wallet/toshi" className="fl-row">
-                    <div className="fl-100">
-                        <div className="fl-row key-row">
-                            <div className="fl-90">
-                                <span>Juwon's Toshi</span>
-                                <span className="status-ball warning"></span>
-                            </div>
-                            <div className="fl-10">
-                                <img alt="" src={require("../Assets/images/dashboard/next.svg")} />
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-                <Link to="/wallet/toshi" className="fl-row">
-                    <div className="fl-100">
-                        <div className="fl-row key-row">
-                            <div className="fl-90">
-                                <span>Juwon's Toshi</span>
-                                <span className="status-ball inactive"></span>
-                            </div>
-                            <div className="fl-10">
-                                <img alt="" src={require("../Assets/images/dashboard/next.svg")} />
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-                <center><button onClick={() => { this.props.history.push('/add-key') }} className="create-account">ADD KEY</button></center>
             </div>
         )
     }
 }
+
+// <center><button onClick={() => { this.props.history.push('/add-key') }} className="create-account">ADD KEY</button></center>

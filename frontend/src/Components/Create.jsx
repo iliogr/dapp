@@ -9,20 +9,18 @@ class Create extends Component {
         super(props);
     }
 
-
     handleChange = (e) => {
         this.setState({ password: e.target.value });
     }
 
-
     createPass = () =>{
         if(this.state.password.length !== 12){
-            // show error
+            console.log("password less than 12")
         }
         else{
             this.props.hashPass(this.state.password)
             .then((result) => {
-                localStorage.setItem(`${this.props.web3.account}:password`, JSON.stringify(result.hash));
+                localStorage.setItem(`${this.props.account}:password`, JSON.stringify(result.hash));
                 this.props.history.push('/dashboard')
             });
         }
@@ -47,7 +45,7 @@ class Create extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        web3: state.web3Reducer
+        account: state.web3Reducer.account
     };
 }
 

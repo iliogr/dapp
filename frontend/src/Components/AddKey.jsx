@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 class AddKey extends Component {
 
@@ -164,7 +166,10 @@ class Step3 extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
+    }
+
+    copyLink = (url) => {
+        console.log(url);
     }
 
 
@@ -190,10 +195,11 @@ class Step3 extends Component {
                                     <div className="fl-80">
                                         <h3>{guardian.name}</h3>
                                         <h4>{guardian.community}</h4>
-                                        <p>{guardian.url}</p>
+                                        <CopyToClipboard onCopy={() => {this.copyLink(guardian.url)}} text={guardian.url}>
+                                            <span>Copy Link</span>
+                                        </CopyToClipboard>
                                     </div>
                                     <div className="fl-20">
-                                        <img alt="" src={require("../Assets/images/dashboard/share-arrow.svg")} />
                                     </div>
                                 </div>
                             </div>

@@ -7,6 +7,7 @@ import Privacy from './Privacy';
 import Dashboard from './Dashboard';
 import AddKey from './AddKey';
 import Wallet from './Wallet';
+import Confirmation from './Confirmation';
 
 import StepsContainer from '../Containers/StepsContainer';
 
@@ -30,6 +31,7 @@ class App extends Component {
                             <Route exact path="/dashboard" component={Dashboard}/>
                             <Route path="/add-key" component={StepsContainer}/>
                             <Route path="/wallet/:name" component={Wallet}/>
+                            <Route path="/confirm" component={Confirmation}/>
                         </div>
                     </div>
                 </div>
